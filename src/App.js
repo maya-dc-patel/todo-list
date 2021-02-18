@@ -5,12 +5,14 @@ import List from './List.js';
 import InputForm from './InputForm.js';
 import React, { useState } from "react";
 import { render } from 'react-dom';
+import { ListGroupItem, ListGroupItemText } from 'reactstrap';
 
 
 
 
 function App() {
   const [list, setList] = useState([]);
+  const [completedList, setList2] = useState([]);
   console.log(list);
 
 
@@ -20,9 +22,24 @@ function App() {
     console.log(list);
   }
 
-  function move(event, index) {
+  function removeItem(index) {
+    const newList = [];
+    for (var i = 0; i < list.length; i++) {
+      if (!(i === index)) {
+        newList.push(list[i]);
+      }
+    }
+    setList(newList);
 
+    console.log(list);
+  }
+  function move(event, index) {
     console.log(event);
+    const newList = [...completedList, list[index]];
+    setList2(newList);
+    removeItem(index);
+
+
   }
   return (
     <div>
@@ -33,7 +50,7 @@ function App() {
       <List list={list} onItemClick={move} />
 
       <div>Completed:</div>
-      <List list={list} />
+      <List list={completedList} />
     </div>
   );
 }

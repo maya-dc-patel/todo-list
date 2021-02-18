@@ -15,6 +15,7 @@ function InputForm(props) {
         const text = event.target[0].value;
         console.log(text);
         props.handleSubmit(text);
+        event.target[0].value = "";
         console.log(text, "third");
     }
     function del(event) {
@@ -25,7 +26,7 @@ function InputForm(props) {
     return (
         <div>
             <Form onSubmit={submit} className="d-flex flex-nowrap">
-                <Input name="textInput"></Input>
+                <Input name="textInput" ></Input>
                 <Button className="mx-3 addButton">Add</Button>
                 <Button onClick={del} >Delete</Button>
             </Form>
