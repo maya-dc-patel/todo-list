@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import Card from './Card.js';
+import MyCard from './Card.js';
 import List from './List.js';
 import InputForm from './InputForm.js';
 import React, { useState } from "react";
+import { render } from 'react-dom';
 
 
 
@@ -11,21 +12,32 @@ import React, { useState } from "react";
 function App() {
   const [list, setList] = useState([]);
   console.log(list);
+
+
   function addItem(text) {
     const newList = [...list, text];
     setList(newList);
     console.log(list);
   }
+
+  function move(event, index) {
+
+    console.log(event);
+  }
   return (
     <div>
-      <Card value={"hello"} />
+
 
       <InputForm handleSubmit={addItem} />
-      <div>List:</div>
-      <List />
+      <div>To-do:</div>
+      <List list={list} onItemClick={move} />
+
+      <div>Completed:</div>
+      <List list={list} />
     </div>
   );
 }
+
 
 
 export default App;

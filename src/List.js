@@ -1,12 +1,16 @@
 import React from "react";
-import Card from "./Card.js";
+import MyCard from "./Card.js";
 
-function printItem(text) {
-    return <Card value={text} />;
-}
 
-function List() {
-    const list = ["one", "two", "three"];
-    return list.map(printItem);
+
+
+function List(props) {
+
+    return props.list.map((item, i) => {
+
+        return <MyCard value={item} click={(event) => props.onItemClick(i)} key={i} />;
+
+    });
+
 }
 export default List;
